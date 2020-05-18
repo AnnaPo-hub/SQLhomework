@@ -19,7 +19,7 @@ public class AppTest {
     SqlUtils mySql = new SqlUtils();
 
  @BeforeAll
-         void setUp() {
+ static void setUp() {
      open("http://localhost:9999");
  }
 
@@ -45,7 +45,7 @@ public class AppTest {
     }
 
     @AfterAll
-    void close() throws SQLException {
-     mySql.cleanDb();
+    static void close() throws SQLException {
+     SqlUtils.cleanDb();
     }
 }

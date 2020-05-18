@@ -56,7 +56,7 @@ public class SqlUtils {
         return status;
     }
 
-    public void cleanDb() throws SQLException {
+    public static void cleanDb() throws SQLException {
         String deleteCards = "DELETE FROM cards; ";
         String deleteAuthCodes = "DELETE FROM auth_codes; ";
         String deleteUsers = "DELETE FROM users; ";
@@ -65,9 +65,9 @@ public class SqlUtils {
              val deleteAuthCodesStmt = conn.createStatement();
              val deleteUsersStmt = conn.createStatement();
         ) {
-            val i = deleteCardsStmt.executeUpdate(deleteCards);
-            val k = deleteAuthCodesStmt.executeUpdate(deleteAuthCodes);
-            val q = deleteUsersStmt.executeUpdate(deleteUsers);
+            deleteCardsStmt.executeUpdate(deleteCards);
+            deleteAuthCodesStmt.executeUpdate(deleteAuthCodes);
+            deleteUsersStmt.executeUpdate(deleteUsers);
         }
     }
 }
