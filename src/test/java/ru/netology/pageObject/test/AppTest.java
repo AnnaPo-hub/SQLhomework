@@ -3,7 +3,7 @@ package ru.netology.pageObject.test;
 import com.codeborne.selenide.Condition;
 import lombok.val;
 import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ru.netology.pageObject.data.DataHelper;
 import ru.netology.pageObject.page.LoginPage;
@@ -18,14 +18,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class AppTest {
     SqlUtils mySql = new SqlUtils();
 
- @BeforeAll
- static void setUp() {
+ @BeforeEach
+ void setUp() {
      open("http://localhost:9999");
  }
 
     @Test
     void shouldCheckLogin() throws SQLException {
-        open("http://localhost:9999");
         val loginPage = new LoginPage();
         val authInfo = DataHelper.getValidAuthInfo();
         val verificationPage = loginPage.validLogin(authInfo);
@@ -36,7 +35,6 @@ public class AppTest {
 
     @Test
     void shouldCheckIfBlocked() throws  SQLException {
-        open("http://localhost:9999");
         val loginPage = new LoginPage();
         val authInfo = DataHelper.getAuthInfoWithInvalidPassword();
         loginPage.validLogin(authInfo);
