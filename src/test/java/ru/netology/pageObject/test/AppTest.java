@@ -25,6 +25,7 @@ public class AppTest {
 
     @Test
     void shouldCheckLogin() throws SQLException {
+        open("http://localhost:9999");
         val loginPage = new LoginPage();
         val authInfo = DataHelper.getValidAuthInfo();
         val verificationPage = loginPage.validLogin(authInfo);
@@ -35,6 +36,7 @@ public class AppTest {
 
     @Test
     void shouldCheckIfBlocked() throws  SQLException {
+        open("http://localhost:9999");
         val loginPage = new LoginPage();
         val authInfo = DataHelper.getAuthInfoWithInvalidPassword();
         loginPage.validLogin(authInfo);
