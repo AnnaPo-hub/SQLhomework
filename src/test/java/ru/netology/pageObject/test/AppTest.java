@@ -34,7 +34,7 @@ public class AppTest {
     }
 
     @Test
-    void shouldCheckIfBlocked() throws  SQLException {
+    void shouldCheckIfBlockedAfter3LoginWithInvalidPassword() throws  SQLException {
         val loginPage = new LoginPage();
         val authInfo = DataHelper.getAuthInfoWithInvalidPassword();
         loginPage.validLogin(authInfo);
