@@ -1,7 +1,9 @@
 package ru.netology.pageObject.page;
 
 import com.codeborne.selenide.SelenideElement;
+import org.openqa.selenium.Keys;
 import ru.netology.pageObject.data.DataHelper;
+
 import static com.codeborne.selenide.Selenide.$;
 
 public class LoginPage {
@@ -14,5 +16,10 @@ public class LoginPage {
         passwordField.setValue(loginInfo.getPassword());
         loginButton.click();
         return new VerificationPage();
+    }
+
+    public void cleanLoginFields() {
+        loginField.doubleClick().sendKeys(Keys.BACK_SPACE);
+        passwordField.doubleClick().sendKeys(Keys.BACK_SPACE);
     }
 }

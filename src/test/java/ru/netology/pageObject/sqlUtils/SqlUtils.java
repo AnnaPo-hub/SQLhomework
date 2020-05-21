@@ -41,21 +41,6 @@ public class SqlUtils {
         return code;
     }
 
-    public String getStatusFromDb() throws SQLException {
-        String statusSQL = "SELECT status FROM users WHERE login = ?;";
-        String status = null;
-        try (val conn = getConnection();
-             val statusStmt = conn.prepareStatement(statusSQL);) {
-            statusStmt.setString(1, "vasya");
-            try (val rs = statusStmt.executeQuery()) {
-                if (rs.next()) {
-                    status = rs.getString("status");
-                }
-            }
-        }
-        return status;
-    }
-
     public static void cleanDb() throws SQLException {
         String deleteCards = "DELETE FROM cards; ";
         String deleteAuthCodes = "DELETE FROM auth_codes; ";
@@ -69,5 +54,20 @@ public class SqlUtils {
             deleteAuthCodesStmt.executeUpdate(deleteAuthCodes);
             deleteUsersStmt.executeUpdate(deleteUsers);
         }
+    }
+
+    public String getStatusFromDb() throws SQLException {
+        String statusSQL = "SELECT status FROM users WHERE login = ?;";
+        String status = null;
+        try (val conn = getConnection();
+             val statusStmt = conn.prepareStatement(statusSQL);) {
+            statusStmt.setString(1, "vasya");
+            try (val rs = statusStmt.executeQuery()) {
+                if (rs.next()) {
+                    status = rs.getString("status");
+                }
+            }
+        }
+        return status;
     }
 }

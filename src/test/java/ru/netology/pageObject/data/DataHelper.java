@@ -4,14 +4,7 @@ import com.github.javafaker.Faker;
 import lombok.Value;
 
 public class DataHelper {
-
     private DataHelper() {
-    }
-
-    @Value
-    public static class AuthInfo {
-        private String login;
-        private String password;
     }
 
     public static AuthInfo getValidAuthInfo() {
@@ -21,6 +14,12 @@ public class DataHelper {
     public static AuthInfo getAuthInfoWithInvalidPassword() {
         Faker faker = new Faker();
         return new AuthInfo("vasya", faker.internet().password());
+    }
+
+    @Value
+    public static class AuthInfo {
+        private String login;
+        private String password;
     }
 
     @Value
