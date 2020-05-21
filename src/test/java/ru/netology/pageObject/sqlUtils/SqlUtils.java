@@ -41,21 +41,6 @@ public class SqlUtils {
         return code;
     }
 
-    public static void cleanDb() throws SQLException {
-        String deleteCards = "DELETE FROM cards; ";
-        String deleteAuthCodes = "DELETE FROM auth_codes; ";
-        String deleteUsers = "DELETE FROM users; ";
-        try (val conn = SqlUtils.getConnection();
-             val deleteCardsStmt = conn.createStatement();
-             val deleteAuthCodesStmt = conn.createStatement();
-             val deleteUsersStmt = conn.createStatement();
-        ) {
-            deleteCardsStmt.executeUpdate(deleteCards);
-            deleteAuthCodesStmt.executeUpdate(deleteAuthCodes);
-            deleteUsersStmt.executeUpdate(deleteUsers);
-        }
-    }
-
     public String getStatusFromDb() throws SQLException {
         String statusSQL = "SELECT status FROM users WHERE login = ?;";
         String status = null;
@@ -69,5 +54,20 @@ public class SqlUtils {
             }
         }
         return status;
+    }
+
+    public static void cleanDb() throws SQLException {
+        String deleteCards = "DELETE FROM cards; ";
+        String deleteAuthCodes = "DELETE FROM auth_codes; ";
+        String deleteUsers = "DELETE FROM users; ";
+        try (val conn = SqlUtils.getConnection();
+             val deleteCardsStmt = conn.createStatement();
+             val deleteAuthCodesStmt = conn.createStatement();
+             val deleteUsersStmt = conn.createStatement();
+        ) {
+            deleteCardsStmt.executeUpdate(deleteCards);
+            deleteAuthCodesStmt.executeUpdate(deleteAuthCodes);
+            deleteUsersStmt.executeUpdate(deleteUsers);
+        }
     }
 }

@@ -17,11 +17,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class AppTest {
     SqlUtils mySql = new SqlUtils();
 
-    @AfterAll
-    static void close() throws SQLException {
-        SqlUtils.cleanDb();
-    }
-
     @BeforeEach
     void setUp() {
         open("http://localhost:9999");
@@ -48,5 +43,10 @@ public class AppTest {
         loginPage.validLogin(authInfo);
         val statusSQL = mySql.getStatusFromDb();
         assertEquals("blocked", statusSQL);
+    }
+
+    @AfterAll
+    static void close() throws SQLException {
+        SqlUtils.cleanDb();
     }
 }
